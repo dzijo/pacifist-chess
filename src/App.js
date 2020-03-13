@@ -14,7 +14,7 @@ function App() {
   const size = 5;
   let trying = [];
   let tried = [];
-  const ps = [pieces.KNIGHT, pieces.ROOK, pieces.ROOK, pieces.ROOK, pieces.Rook];
+  const ps = [pieces.ROOK, pieces.QUEEN, pieces.ROOK, pieces.ROOK, pieces.KNIGHT];
 
   for (let i = 0; i < size * size; i++) {
     trying.push(0);
@@ -24,26 +24,31 @@ function App() {
   let i = 0;
   let lastI = 0;
   let currentP = 0;
-  while (true) {
+
+
+  while (lastI < Math.pow(size, 2) && currentP < ps.length) {
     const currentPiece = ps[currentP];
+    console.log(lastI);
+    console.log(currentPiece);
     while ((trying[i] !== 0 || tried[i].includes(currentPiece)) && i < Math.pow(size, 2)) {
       i++;
     }
     if (i >= Math.pow(size, 2)) {
       trying[lastI] = 0;
       i = lastI;
-      break;
+      continue;
     }
-    lastI = i;
     trying[i] = currentPiece;
     tried[i].push(currentPiece);
     trying = check(currentPiece, trying, i);
+    currentP++;
     console.log(trying);
     console.log(tried);
-    if (lastI >= Math.pow(size, 2)) {
-      break;
-    }
     lastI = i;
+  }
+
+  if (currentP !== ps.length) {
+    console.log("F");
   }
 
   return (

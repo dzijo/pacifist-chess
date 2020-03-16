@@ -34,11 +34,11 @@ function Board(props) {
         <div>
             {field.map((val, i) => {
                 return (
-                    <React.Fragment>
-                        {<button className={(i % 2) ? classes.whiteSquare : classes.blackSquare} disabled>
+                    <React.Fragment key={`f${i}`}>
+                        {<button className={(i % 2) ? classes.whiteSquare : classes.blackSquare} disabled key={i}>
                             {val}
                         </button>}
-                        {((i + 1) % size === 0) ? <br /> : null}
+                        {((i + 1) % size === 0) ? <br key={`br${i}`} /> : null}
                     </React.Fragment>)
             })}
         </div>

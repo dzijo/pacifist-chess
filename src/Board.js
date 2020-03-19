@@ -37,18 +37,18 @@ const styles = {
         alignItems: 'center'
     },
     input: {
-        width: 8,
-        height: 3.6,
-        fontSize: 5,
+        width: 16,
+        height: 7.2,
+        fontSize: 10,
     },
     label: {
-        fontSize: 8,
+        fontSize: 16,
         display: 'flex',
         alignItems: 'center'
     },
     button: {
-        height: 10,
-        fontSize: 5,
+        height: 20,
+        fontSize: 10,
         padding: 0
     }
 }

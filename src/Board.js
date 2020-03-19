@@ -125,27 +125,27 @@ function Board(props) {
                 })
             }} className={classes.form}>
                 <label className={classes.label}>
-                    Size:
+                    <p>Size:</p>
                     <input type="text" value={size} onChange={handleSizeChange} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    Q:
+                    <p>Q:</p>
                     <input type="text" value={queens} onChange={(event) => { handleChange(event, pieces.QUEEN) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    R:
+                    <p>R:</p>
                     <input type="text" value={rooks} onChange={(event) => { handleChange(event, pieces.ROOK) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    B:
+                    <p>B:</p>
                     <input type="text" value={bishops} onChange={(event) => { handleChange(event, pieces.BISHOP) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    N:
+                    <p>N:</p>
                     <input type="text" value={knights} onChange={(event) => { handleChange(event, pieces.KNIGHT) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    K:
+                    <p>K:</p>
                     <input type="text" value={kings} onChange={(event) => { handleChange(event, pieces.KING) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <input type="submit" value="Start" className={classes.button} disabled={props.size !== 0} />

@@ -142,23 +142,23 @@ function Board(props) {
                     <input type="text" value={size} onChange={handleSizeChange} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <img className={classes.img} src={images.queen}></img>
+                    <img className={classes.img} src={images.queen} alt='queen'></img>
                     <input type="text" value={queens} onChange={(event) => { handleChange(event, pieces.QUEEN) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <img className={classes.img} src={images.rook}></img>
+                    <img className={classes.img} src={images.rook} alt='rook'></img>
                     <input type="text" value={rooks} onChange={(event) => { handleChange(event, pieces.ROOK) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <img className={classes.img} src={images.bishop}></img>
+                    <img className={classes.img} src={images.bishop} alt='bishop'></img>
                     <input type="text" value={bishops} onChange={(event) => { handleChange(event, pieces.BISHOP) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <img className={classes.img} src={images.knight}></img>
+                    <img className={classes.img} src={images.knight} alt='knight'></img>
                     <input type="text" value={knights} onChange={(event) => { handleChange(event, pieces.KNIGHT) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <img className={classes.img} src={images.king}></img>
+                    <img className={classes.img} src={images.king} alt='king'></img>
                     <input type="text" value={kings} onChange={(event) => { handleChange(event, pieces.KING) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <input type="submit" value="Start" className={classes.button} disabled={props.size !== 0} />
@@ -171,7 +171,7 @@ function Board(props) {
                             className={(i % size % 2) === (Math.floor(i / size) % 2) ? classes.whiteSquare : classes.blackSquare}
                             key={i}
                             src={getImage(val)}
-                            alt='Piece'>
+                            alt={val}>
                         </img>}
                         {((i + 1) % size === 0) ? <br key={`br${i}`} /> : null}
                     </React.Fragment>)

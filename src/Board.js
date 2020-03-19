@@ -14,8 +14,9 @@ const pieces = {
 
 const styles = {
     blackSquare: {
-        width: size => size,
-        height: size => size,
+        maxWidth: props => `calc(90%/${props.size})`,
+        width: props => props.width,
+        //height: props => props.width,
         backgroundColor: 'rgb(64, 64, 64)',
         borderWidth: 1,
         borderStyle: 'solid',
@@ -24,8 +25,9 @@ const styles = {
         color: 'red'
     },
     whiteSquare: {
-        width: size => size,
-        height: size => size,
+        maxWidth: props => `calc(90%/${props.size})`,
+        width: props => props.width,
+        //height: props => props.width,
         backgroundColor: 'white',
         borderWidth: 1,
         borderStyle: 'solid',
@@ -35,7 +37,7 @@ const styles = {
     },
     form: {
         display: 'flex',
-        flexFlow: 'row nowrap',
+        flexFlow: 'row wrap',
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -75,7 +77,7 @@ function Board(props) {
     const [bishops, setBishops] = React.useState(0)
     const [knights, setKnights] = React.useState(0)
     const [kings, setKings] = React.useState(0)
-    const classes = useStyles(props.width)
+    const classes = useStyles(props)
     const field = props.field
 
     React.useEffect(() => {
@@ -91,9 +93,6 @@ function Board(props) {
         let value = event.target.value
         if (isNaN(value)) {
             return
-        }
-        if (value === '') {
-            value = 0
         }
         switch (piece) {
             case pieces.QUEEN:
@@ -120,22 +119,56 @@ function Board(props) {
         if (isNaN(value)) {
             return
         }
-        if (value < 3) {
-            value = 3
-        }
-        else if (value > 7) {
-            value = 7
-        }
         setSize(value)
+    }
+
+    const handleSubmit = () => {
+        let values = {
+            size,
+            queens,
+            rooks,
+            bishops,
+            knights,
+            kings
+        }
+        if (size < 3) {
+            values.size = 3
+            setSize(3)
+        }
+        if (size > 7) {
+            values.size = 7
+            setSize(7)
+        }
+        if (queens === '') {
+            values.queens = 0
+            setQueens(0)
+        }
+        if (rooks === '') {
+            values.rooks = 0
+            setRooks(0)
+        }
+        if (bishops === '') {
+            values.bishops = 0
+            setBishops(0)
+        }
+        if (knights === '') {
+            values.knights = 0
+            setKnights(0)
+        }
+        if (kings === '') {
+            values.kings = 0
+            setKings(0)
+        }
+        props.handleSubmit({
+            ...values
+        })
     }
 
     return (
         <div>
             <form onSubmit={(event) => {
                 event.preventDefault()
-                props.handleSubmit({
-                    size, queens, rooks, bishops, knights, kings
-                })
+                handleSubmit()
             }} className={classes.form}>
                 <label className={classes.label}>
                     <p className={classes.p}>Size:</p>

@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { createUseStyles } from 'react-jss'
 
+import images from './pics/images'
+
+
 const pieces = {
     QUEEN: 'Q',
     ROOK: 'R',
@@ -13,10 +16,10 @@ const styles = {
     blackSquare: {
         width: size => size,
         height: size => size,
-        backgroundColor: 'black',
+        backgroundColor: 'rgb(64, 64, 64)',
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: 'blue',
+        borderColor: 'black',
         padding: 0,
         color: 'red'
     },
@@ -26,7 +29,7 @@ const styles = {
         backgroundColor: 'white',
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: 'blue',
+        borderColor: 'black',
         padding: 0,
         color: 'red'
     },
@@ -40,16 +43,26 @@ const styles = {
         width: 32,
         height: 15,
         fontSize: 20,
+        marginTop: 8
     },
     label: {
-        fontSize: 32,
         display: 'flex',
         alignItems: 'center'
     },
+    p: {
+        fontSize: 32,
+        margin: 0,
+        lineHeight: 0
+    },
+    img: {
+        height: 36,
+        backgroundColor: 'rgba(1, 1, 1, 0)',
+    },
     button: {
-        height: 40,
+        height: 30,
         fontSize: 20,
-        padding: 0
+        padding: 0,
+        marginLeft: 10
     }
 }
 
@@ -125,27 +138,27 @@ function Board(props) {
                 })
             }} className={classes.form}>
                 <label className={classes.label}>
-                    <p>Size:</p>
+                    <p className={classes.p}>Size:</p>
                     <input type="text" value={size} onChange={handleSizeChange} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <p>Q:</p>
+                    <img className={classes.img} src={images.queen}></img>
                     <input type="text" value={queens} onChange={(event) => { handleChange(event, pieces.QUEEN) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <p>R:</p>
+                    <img className={classes.img} src={images.rook}></img>
                     <input type="text" value={rooks} onChange={(event) => { handleChange(event, pieces.ROOK) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <p>B:</p>
+                    <img className={classes.img} src={images.bishop}></img>
                     <input type="text" value={bishops} onChange={(event) => { handleChange(event, pieces.BISHOP) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <p>N:</p>
+                    <img className={classes.img} src={images.knight}></img>
                     <input type="text" value={knights} onChange={(event) => { handleChange(event, pieces.KNIGHT) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <label className={classes.label}>
-                    <p>K:</p>
+                    <img className={classes.img} src={images.king}></img>
                     <input type="text" value={kings} onChange={(event) => { handleChange(event, pieces.KING) }} className={classes.input} disabled={props.size !== 0} />
                 </label>
                 <input type="submit" value="Start" className={classes.button} disabled={props.size !== 0} />
@@ -154,9 +167,12 @@ function Board(props) {
                 return (
                     <React.Fragment key={`f${i}`}>
 
-                        {<button className={(i % size % 2) === (Math.floor(i / size) % 2) ? classes.whiteSquare : classes.blackSquare} disabled key={i}>
-                            {val}
-                        </button>}
+                        {<img
+                            className={(i % size % 2) === (Math.floor(i / size) % 2) ? classes.whiteSquare : classes.blackSquare}
+                            key={i}
+                            src={getImage(val)}
+                            alt='Piece'>
+                        </img>}
                         {((i + 1) % size === 0) ? <br key={`br${i}`} /> : null}
                     </React.Fragment>)
             })}
@@ -165,3 +181,20 @@ function Board(props) {
 }
 
 export default Board
+
+function getImage(value) {
+    switch (value) {
+        case pieces.QUEEN:
+            return images.queen
+        case pieces.ROOK:
+            return images.rook
+        case pieces.BISHOP:
+            return images.bishop
+        case pieces.KNIGHT:
+            return images.knight
+        case pieces.KING:
+            return images.king
+        default:
+            return 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='
+    }
+}

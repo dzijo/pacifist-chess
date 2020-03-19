@@ -295,7 +295,7 @@ function App() {
   return (
     <div className="App">
 
-      <Board field={size === 0 ? [] : superDone && showSolution >= 0 ? solutions[showSolution] : stack[stack.length - 1]} width={40} handleSubmit={handleStart} size={size} pieces={countPieces(ps)} />
+      <Board field={size === 0 ? [] : superDone && showSolution >= 0 ? solutions[showSolution] : stack[stack.length - 1]} width={60} handleSubmit={handleStart} size={size} pieces={countPieces(ps)} />
       <button disabled={!(superDone && showSolution > 0)} onClick={() => { cycleSolutions(true) }}>{`<`}</button>
       <button disabled={!(superDone && showSolution < (solutions.length - 1))} onClick={() => { cycleSolutions(false) }}>{`>`}</button>
       <br />

@@ -227,12 +227,13 @@ function App() {
       looping: false,
       showSolution: -1,
       size: 0,
-      ps: []
+      ps: ps
     })
   }
 
   const handleStart = (input) => {
     size = input.size
+    ps = []
     for (let i = 0; i < input.queens; i++) {
       ps.push(pieces.QUEEN)
     }
